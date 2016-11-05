@@ -20,24 +20,23 @@ import {
  */
 const initialState = {
   visibilityFilter: 'SHOW_ALL',
-  todos: [
-    {
-      text: 'Consider using Redux',
-      completed: true,
-    },
-    {
-      text: 'Keep all state in a single tree',
-      completed: false
-    }
-  ]
+  todos: [{
+    text: 'Consider using Redux',
+    completed: true,
+  }, {
+    text: 'Keep all state in a single tree',
+    completed: false
+  }]
 }
 
-function todoApp(state, action) {
-  if (typeof state === 'undefined') {
-    return initialState
+function todoApp(state = initialState, action) {
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
+      // We create a copy with Object.assign()
+      return Object.assign({}, state, {
+        visibilityFilter: action.filter
+      })
+    default:
+      return state
   }
-
-  // For now, don't handle any actions
-  // and just return the state given to us.
-  return state
 }
