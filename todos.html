@@ -24,8 +24,8 @@
       document.getElementById('todo')
         .addEventListener('blur', function (evt) {
           setTimeout(function () {
-            console.log('ADD_TODO');
-            store.dispatch({ type: 'ADD_TODO', text: evt.target.value })
+            console.log('ADD_TODO', evt);
+            store.dispatch(actions.addTodo(evt.target.value))
           }, 1000);
         });
 

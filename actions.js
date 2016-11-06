@@ -15,12 +15,12 @@ window.actions = {
    */
   addTodo: function(text) {
     console.log('addTodo', text);
-    return { type: ADD_TODO, text }
+    return { type: this.ADD_TODO, text }
   },
   toggleTodo: function(index) {
-    return { type: TOGGLE_TODO, index }
+    return { type: this.TOGGLE_TODO, index }
   },
   setVisibilityFilter: function(filter) {
-    return { type: SET_VISIBILITY_FILTER, filter }
+    return { type: this.SET_VISIBILITY_FILTER, filter }
   }
 };
