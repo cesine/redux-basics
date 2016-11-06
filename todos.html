@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redux todos example</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+  </head>
+  <body>
+    <div>
+    <input id="todo"/>
+    <ul id="todoList">
+    </ul>
+    </div>
+
+    <script src="actions.js"></script>
+    <script src="reducers.js"></script>
+    <script>
+      var store = Redux.createStore(window.todoApp, {
+        todos: [{
+          text: "starting",
+          completed: false
+        }]
+      });
+
+      document.getElementById('todo')
+        .addEventListener('blur', function (evt) {
+          setTimeout(function () {
+            console.log('ADD_TODO');
+            store.dispatch({ type: 'ADD_TODO', text: evt.target.value })
+          }, 1000);
+        });
+
+      var todosElement = document.getElementById('todoList')
+
+      function render() {
+        var app = store.getState();
+        console.log('render', app);
+        todosElement.innerHTML = app.todos.map(function(todo){
+          return todo.text;
+        }).join(", ").toString();
+      }
+
+      render()
+      store.subscribe(render)
+
+    </script>
+  </body>
+</html>
