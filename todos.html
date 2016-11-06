@@ -5,6 +5,7 @@
     <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
     <script>window.exports = {};</script>
     <script src="node_modules/redux-logger/dist/index.js"></script>
+    <script src="node_modules/redux-thunk/dist/redux-thunk.js"></script>
   </head>
   <body>
     <div>
@@ -16,15 +17,14 @@
     <script src="actions.js"></script>
     <script src="reducers.js"></script>
     <script>
-      var loggerMiddleware = window.exports.reduxLogger();
-
       var store = Redux.createStore(window.todoApp, {
         todos: [{
           text: "starting",
           completed: false
         }]
       }, Redux.applyMiddleware(
-        loggerMiddleware
+        window.exports.reduxLogger(),
+        window.exports.ReduxThunk.default
       ));
 
       document.getElementById('todo')
